@@ -23,4 +23,13 @@ public class UserService {
         Optional<User> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Object not found"));
     }
+
+    public User insert(User obj) {
+        return repository.save(obj);
+    }
+
+    public void delete(String id) {
+        findById(id);
+        repository.deleteById(id);
+    }
 }
