@@ -1,6 +1,7 @@
 package com.psouza.springmongodbdemo.resources;
 
 import com.psouza.springmongodbdemo.dto.UserDTO;
+import com.psouza.springmongodbdemo.entities.Post;
 import com.psouza.springmongodbdemo.entities.User;
 import com.psouza.springmongodbdemo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,12 @@ public class UserResource {
     public ResponseEntity<UserDTO> findById(@PathVariable String id) {
         User user = service.findById(id);
         return ResponseEntity.ok().body(new UserDTO(user));
+    }
+
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User obj = service.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
     }
 
     @PostMapping

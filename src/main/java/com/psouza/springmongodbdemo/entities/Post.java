@@ -1,5 +1,6 @@
 package com.psouza.springmongodbdemo.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.psouza.springmongodbdemo.dto.AuthorDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -14,6 +15,8 @@ public class Post implements Serializable {
 
     @Id
     private String id;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd:'T'HH:mm:ss'Z'", timezone = "GMT")
     private Date date;
     private String title;
     private String body;
